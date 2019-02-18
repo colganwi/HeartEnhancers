@@ -17,7 +17,7 @@ for seq in cr_genome:
 for seq in cs_genome:
     cs_seqs[seq.id] = seq.seq
 
-file= open("data/cr_regions.txt","w")
+file= open("data/alignments.txt","w")
 for gene in genes:
 
     file.write(gene[0]+' '+gene[1]+'\n\n')
@@ -59,7 +59,7 @@ for gene in genes:
         cs_upstream = cs_seqs[cs_gene.chrom][cs_start:cs_start+SIZE].reverse_complement()
         cs_downstream = cs_seqs[cs_gene.chrom][cs_start-SIZE:cs_start].reverse_complement()
         cs_mask = np.flip(cs_mask,0)
-    '''
+
     alignments_upstream = pairwise2.align.globalms(cr_upstream, cs_upstream, 1, -1, -10, -.5)
     alignments_downstream = pairwise2.align.globalms(cr_downstream, cs_downstream, 1, -1, -10, -.5)
 
@@ -92,9 +92,9 @@ for gene in genes:
             else:
                 new_cs_alignment += cs_alignment[i]
         cs_alignment = new_cs_alignment
-    '''
+
     cr_alignment = str(cr_upstream) + str(cr_downstream)
     for i in range(0,2*SIZE-1,80):
         file.write(cr_alignment[i:i+80]+'\n')
-            #file.write(cs_alignment[i:i+80]+'\n\n')
+        file.write(cs_alignment[i:i+80]+'\n\n')
 file.close()

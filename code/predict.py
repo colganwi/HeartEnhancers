@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 alignments = load_alignments("data/alignments.txt")
 
-for alignment in alignments[0:2]:
+for alignment in alignments[0:10]:
     print(alignment[0]+'\n')
 
     cr = alignment[1]
